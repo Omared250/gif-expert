@@ -2,19 +2,26 @@ import { useEffect, useState } from "react"
 import { getGifs } from "../helpers/getGifs"
 
 export const GifGrid = ({ category }) => {
-    
-    const [counter, setCounter] = useState(10);
-    
-    useEffect(() => {
-        getGifs();
-    }, []);
 
-    return (
-      <>
-        <h3>{category}</h3>
+  const [images, setImages] = useState([]);
+  
+  const getImages = async() => {
+    const newImages = await getGifs(category);
+    setImages(newImages);
+  }
 
-        <h5>{ counter }</h5>
-        <button onClick={() => setCounter( counter + 1 )} >+1</button>
-      </>
-    )
+  useEffect(() => {
+    getImages();
+  }, []);
+
+  return (
+    <>
+      <h3>{category}</h3>
+      <ol>
+        {
+          images.map(({id, title}) => <li key={ id }>{ title }</li>)
+        }
+      </ol>
+    </>
+  )
 }
