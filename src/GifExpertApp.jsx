@@ -22,7 +22,7 @@ export const GifExpertApp = () => {
            <h1>GifExpertApp</h1>
 
             <AddCategory 
-                onNewCategory={e => onAddCategory(e)}
+                onNewCategory={ onAddCategory }
             />
             
             { categories.map( category => (
