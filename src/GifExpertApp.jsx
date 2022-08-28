@@ -6,6 +6,13 @@ export const GifExpertApp = () => {
     const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
 
     const onAddCategory = (newCategory) => {
+        const category = newCategory.split(' ')
+            .map(word => word.charAt(0)
+            .toUpperCase() + word.slice(1)
+            .toLowerCase()).join(' ');
+
+        if (categories.includes(newCategory)) return;
+
         setCategories([ newCategory, ...categories]);
     }
 
